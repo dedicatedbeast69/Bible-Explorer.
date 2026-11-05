@@ -1,0 +1,30 @@
+{
+ "name": "Bible Explorer FR / EN",
+ "short_name": "Bible Explorer",
+ "description": "Bible LSG 1910 + KJV, livres hors canon, canon éthiopien, Mes versets, lecture audio — hors ligne.",
+ "lang": "fr",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#00071a",
+ "theme_color": "#00071a",
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

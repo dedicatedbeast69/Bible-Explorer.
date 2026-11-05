@@ -1,0 +1,7 @@
+// Bible Explorer service worker — precaches the whole app (≈13 MB incl. full Bibles) for offline use.
+const CACHE="bible-explorer-1.2.0-ios-f8006be3f8";const PRE=["./","index.html","lsg.js","kjv.js","extra.js","logo.jpg","manifest.webmanifest","icons/icon-120.png","icons/icon-152.png","icons/icon-167.png","icons/icon-180.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-512.png"];
+self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>Promise.all(PRE.map(u=>fetch(new Request(u,{cache:"reload"})).then(r=>{if(!r.ok)throw new Error(u+" "+r.status);return c.put(u,r)})))).then(()=>self.skipWaiting()))});
+self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith("bible-explorer-")&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()).then(()=>self.clients.matchAll({includeUncontrolled:true})).then(cs=>cs.forEach(c=>c.postMessage("precached"))))});
+self.addEventListener("fetch",e=>{const req=e.request;if(req.method!=="GET")return;const url=new URL(req.url);if(url.origin!==location.origin)return;
+ if(req.mode==="navigate"){e.respondWith(caches.match("index.html",{cacheName:CACHE}).then(r=>r||fetch(req)).catch(()=>caches.match("index.html")));return}
+ e.respondWith(caches.match(req,{ignoreSearch:true}).then(r=>r||fetch(req).then(res=>{if(res.ok&&url.pathname.includes("/splash/")){const cl=res.clone();caches.open(CACHE).then(c=>c.put(req,cl))}return res})))});
