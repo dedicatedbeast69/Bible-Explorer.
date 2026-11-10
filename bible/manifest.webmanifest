@@ -1,7 +1,7 @@
 {
  "name": "Bible Explorer FR / EN",
  "short_name": "Bible Explorer",
- "description": "Bible LSG 1910 + KJV, livres hors canon, canon éthiopien, Mes versets, lecture audio — hors ligne.",
+ "description": "Bible LSG 1910 + KJV, prières, rappels calendrier, livres hors canon, canon éthiopien, Mes versets, lecture audio — hors ligne.",
  "lang": "fr",
  "start_url": "./",
  "scope": "./",
